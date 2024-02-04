@@ -1,0 +1,777 @@
+1
+00:00:00,000 --> 00:00:29,540
+Welcome to the second lecture on topic four,
+
+2
+00:00:29,540 --> 00:00:35,259
+Third Normal Form.
+
+3
+00:00:35,259 --> 00:00:38,139
+This presentation is presented by Dr. Ng.
+
+4
+00:00:38,139 --> 00:00:40,500
+This presentation is copyright property of NTU.
+
+5
+00:00:40,500 --> 00:00:49,259
+It is intended for students of CZ 2007 only.
+
+6
+00:00:49,259 --> 00:00:54,619
+In this lecture, we will continue our discussion on third normal form decomposition process
+
+7
+00:00:54,619 --> 00:00:56,540
+using the concept of minimal basis.
+
+8
+00:00:56,540 --> 00:01:03,580
+We will go through an exercise and then we will look at properties of tables that satisfy
+
+9
+00:01:03,580 --> 00:01:08,699
+the third normal form.
+
+10
+00:01:08,699 --> 00:01:15,540
+So let's look at one exercise on converting a set of functional dependencies into minimal
+
+11
+00:01:15,540 --> 00:01:17,699
+basis.
+
+12
+00:01:17,699 --> 00:01:23,220
+So we are given a functional dependency S which contains A determines C, AC determines
+
+13
+00:01:23,220 --> 00:01:31,059
+D and AB and AD determines B. So the first step is to transform the functional dependency
+
+14
+00:01:31,059 --> 00:01:40,820
+to ensure that the right hand side of every FD has only one attribute.
+
+15
+00:01:40,820 --> 00:01:47,580
+The second step is to see if any FD can be derived from other FDs and these are the redundant
+
+16
+00:01:47,580 --> 00:01:54,500
+ones and we will remove them and the third step is to check if we can remove any attribute
+
+17
+00:01:54,500 --> 00:02:00,419
+from the left hand side of any FD and yet not introduce a new FD.
+
+18
+00:02:00,419 --> 00:02:04,779
+So these attributes are redundant attributes.
+
+19
+00:02:04,779 --> 00:02:09,860
+So first step is to make sure the right hand side has one attribute.
+
+20
+00:02:09,860 --> 00:02:13,259
+Second step, remove redundant FDs.
+
+21
+00:02:13,259 --> 00:02:18,539
+Third step, remove redundant left hand side attributes.
+
+22
+00:02:18,539 --> 00:02:23,820
+So let's look at the first step.
+
+23
+00:02:23,820 --> 00:02:30,860
+Transform the FDs to ensure that the right hand side of each FD has only one attribute.
+
+24
+00:02:30,860 --> 00:02:32,940
+And is it the case?
+
+25
+00:02:32,940 --> 00:02:34,820
+Well yes.
+
+26
+00:02:34,820 --> 00:02:45,020
+So it's automatically done and we denote this new set as M to stand for minimal basis.
+
+27
+00:02:45,020 --> 00:02:55,500
+Second step is to remove redundant FDs and for that we have to look at each one of them.
+
+28
+00:02:55,500 --> 00:02:59,419
+Let's look at A determines C first.
+
+29
+00:02:59,419 --> 00:03:07,020
+If A determines C is removed, then the ones left would be AC determines D and AD determines
+
+30
+00:03:07,020 --> 00:03:16,979
+B. We want to check if A determines C is inferable from the remaining FDs.
+
+31
+00:03:16,979 --> 00:03:17,979
+How do we do that?
+
+32
+00:03:17,979 --> 00:03:23,339
+Well, we will take the closure of the left hand side which is A and the closure of the
+
+33
+00:03:23,339 --> 00:03:31,339
+left hand side is just A itself using the remaining FDs.
+
+34
+00:03:31,339 --> 00:03:39,740
+Since A closure does not contain C, therefore A determines C cannot be derived from the
+
+35
+00:03:39,740 --> 00:03:43,179
+remaining two FDs.
+
+36
+00:03:43,179 --> 00:03:54,619
+Which means that we should not remove A determines C because it is not redundant.
+
+37
+00:03:54,619 --> 00:04:04,179
+Next AC determines D. Again we removed it and the remaining ones are A determines C
+
+38
+00:04:04,179 --> 00:04:11,020
+and AD determines B. We want to see if AC determines D is inferable from the remaining
+
+39
+00:04:11,020 --> 00:04:12,020
+two.
+
+40
+00:04:12,020 --> 00:04:13,020
+How?
+
+41
+00:04:13,059 --> 00:04:19,380
+We are looking at the closure of the left hand side AC which is still AC.
+
+42
+00:04:19,380 --> 00:04:25,700
+So therefore it doesn't contain D and therefore AC determines D cannot be derived from the
+
+43
+00:04:25,700 --> 00:04:32,019
+remaining FDs meaning that we should not remove it otherwise we will lose information.
+
+44
+00:04:32,019 --> 00:04:39,660
+So AC determines D is not redundant.
+
+45
+00:04:39,660 --> 00:04:48,059
+The last one AD determines B. If we removed it, the remaining ones are these two FDs.
+
+46
+00:04:48,059 --> 00:04:57,940
+We look at AD closure which is still AD which does not contains B. So therefore AD determines
+
+47
+00:04:57,940 --> 00:05:01,420
+B cannot be derived from the remaining FDs.
+
+48
+00:05:01,420 --> 00:05:07,220
+It is not redundant so therefore we should keep it.
+
+49
+00:05:07,220 --> 00:05:14,100
+So after doing step 2, we have the same set of M.
+
+50
+00:05:14,100 --> 00:05:20,019
+So now we are ready to do step 3 which is to remove redundant left hand side attributes
+
+51
+00:05:20,019 --> 00:05:21,859
+if any.
+
+52
+00:05:21,859 --> 00:05:22,859
+So there are.
+
+53
+00:05:22,859 --> 00:05:30,980
+There are two FDs AC determines D and AD determines B which have more than one attribute on the
+
+54
+00:05:30,980 --> 00:05:31,980
+left hand side.
+
+55
+00:05:31,980 --> 00:05:34,980
+So we need to try 4 times.
+
+56
+00:05:34,980 --> 00:05:45,660
+So let's try to remove A from AC determines D. We get C determines D. Can C determines
+
+57
+00:05:45,660 --> 00:05:47,980
+D be derived from M?
+
+58
+00:05:47,980 --> 00:05:50,140
+Let's see.
+
+59
+00:05:50,140 --> 00:05:55,459
+Well C closure is just C so therefore not derivable.
+
+60
+00:05:55,459 --> 00:06:06,260
+Meaning that C determines D will be a new function dependency introduced if we removed
+
+61
+00:06:06,260 --> 00:06:08,940
+A and we should not do that.
+
+62
+00:06:08,940 --> 00:06:16,459
+So therefore A in this FD AC determines D is not redundant and we should not remove
+
+63
+00:06:16,459 --> 00:06:20,260
+it.
+
+64
+00:06:20,260 --> 00:06:30,899
+Now check C. If we remove C from AC determines D we get A determines D. Can it be inferred
+
+65
+00:06:30,899 --> 00:06:33,859
+from the remaining FDs?
+
+66
+00:06:33,859 --> 00:06:35,200
+Let's see.
+
+67
+00:06:35,200 --> 00:06:44,619
+So A closure is ABCD which contains D. So therefore A determines D can be inferred from
+
+68
+00:06:44,619 --> 00:06:52,980
+the remaining set of FDs meaning that it is all the while hidden there.
+
+69
+00:06:52,980 --> 00:07:02,899
+And therefore we can simply remove C and the remaining FD AD determines D is still there.
+
+70
+00:07:02,899 --> 00:07:08,459
+So therefore C is redundant and can be removed.
+
+71
+00:07:08,459 --> 00:07:12,200
+And our set M so far is now this.
+
+72
+00:07:12,200 --> 00:07:22,279
+The second FD has been simplified to A determines D. Now let's check the redundant attributes
+
+73
+00:07:22,279 --> 00:07:30,279
+for the third FD.
+
+74
+00:07:30,279 --> 00:07:41,040
+Okay let's try to remove A from AD determines B resulting in D determines B. Is D determines
+
+75
+00:07:41,040 --> 00:07:44,519
+B inferable from M?
+
+76
+00:07:44,519 --> 00:07:45,519
+Look at the closure.
+
+77
+00:07:45,519 --> 00:07:52,839
+Closure is just D. It doesn't contain B. So therefore D determines B cannot be inferred
+
+78
+00:07:52,839 --> 00:08:03,679
+from M and we should not introduce D determines B into the system by removing A.
+
+79
+00:08:03,679 --> 00:08:12,980
+So therefore A is not redundant and should not be removed from AD determines B.
+
+80
+00:08:12,980 --> 00:08:18,040
+Now the last check.
+
+81
+00:08:18,040 --> 00:08:25,600
+Okay try to remove D. We get A determines B. Is it derivable from M?
+
+82
+00:08:25,600 --> 00:08:32,359
+Well A closure is ABCD so therefore it contains B. So therefore we know that A determines
+
+83
+00:08:32,359 --> 00:08:37,559
+B can be inferred from M. All along it has been there.
+
+84
+00:08:37,559 --> 00:08:39,320
+It is hidden there.
+
+85
+00:08:39,320 --> 00:08:44,140
+So therefore we can remove D because it is redundant.
+
+86
+00:08:44,140 --> 00:08:50,599
+By removing D we get A determines B which all along has been there.
+
+87
+00:08:50,599 --> 00:08:59,960
+So therefore the final set of minimal bases is A determines C, A determines D and A determines
+
+88
+00:08:59,960 --> 00:09:04,840
+B.
+
+89
+00:09:04,840 --> 00:09:11,719
+So suppose this set of functional dependencies form the minimal bases then how do we go from
+
+90
+00:09:11,719 --> 00:09:13,159
+here?
+
+91
+00:09:13,159 --> 00:09:19,200
+Well the first step is to combine those FDs with the same left hand side.
+
+92
+00:09:19,200 --> 00:09:20,799
+There are two.
+
+93
+00:09:20,799 --> 00:09:31,659
+So therefore we have this set A determines BC and C determines D. Step 2 is to form a
+
+94
+00:09:31,659 --> 00:09:34,320
+table from each one of them.
+
+95
+00:09:34,320 --> 00:09:40,679
+We have R1 containing ABC and R2 containing CD.
+
+96
+00:09:40,679 --> 00:09:44,000
+Step 3 is to remove redundant tables if any.
+
+97
+00:09:45,000 --> 00:09:52,159
+There isn't tables where one is a subset of another.
+
+98
+00:09:52,159 --> 00:10:00,840
+And sometimes we may also need to add an additional table if none of the tables contains the key.
+
+99
+00:10:00,840 --> 00:10:05,359
+Let's see.
+
+100
+00:10:05,359 --> 00:10:13,440
+So the minimal bases suppose is A determines B and C determines D.
+
+101
+00:10:13,440 --> 00:10:16,880
+Again we combine the left hand side, still the same.
+
+102
+00:10:16,880 --> 00:10:18,520
+Step 2 is to create a table.
+
+103
+00:10:18,520 --> 00:10:22,679
+So we have AB and CD in R1 and R2.
+
+104
+00:10:22,679 --> 00:10:25,479
+Remove redundant tables, none.
+
+105
+00:10:25,479 --> 00:10:33,359
+However R1 and R2 they are unable to do a lossless join.
+
+106
+00:10:33,359 --> 00:10:34,359
+Why?
+
+107
+00:10:34,359 --> 00:10:40,679
+Well because there are just no common attributes between them.
+
+108
+00:10:40,679 --> 00:10:46,400
+So we should add a table that contains a key of the original table.
+
+109
+00:10:46,400 --> 00:10:55,200
+Suppose the original table the key is A and C. So therefore we should add R3, A and C
+
+110
+00:10:55,200 --> 00:11:03,059
+so that the three tables can be losslessly reconstructed back.
+
+111
+00:11:03,059 --> 00:11:13,099
+So the final result is R1, R2 and R3 where R3 is introduced.
+
+112
+00:11:13,099 --> 00:11:19,700
+And the last step is to remove redundant tables which there isn't.
+
+113
+00:11:19,700 --> 00:11:27,580
+So from table R which contains A, B, C, D we obtain minimal bases and from minimal bases
+
+114
+00:11:27,580 --> 00:11:35,179
+we constructed smaller tables and technically all the smaller tables should satisfy the
+
+115
+00:11:35,179 --> 00:11:44,059
+third normal form and we will see why in the next few slides.
+
+116
+00:11:44,059 --> 00:11:49,340
+So we have discussed and gone through the exercise on 3NF decomposition.
+
+117
+00:11:49,340 --> 00:11:57,059
+We would like to now study the tables that are formed from this process.
+
+118
+00:11:57,059 --> 00:11:59,380
+Are they in third normal form?
+
+119
+00:11:59,380 --> 00:12:04,340
+Well let's see.
+
+120
+00:12:04,340 --> 00:12:10,940
+Why does the 3NF decomposition process produce tables which are in 3NF?
+
+121
+00:12:10,940 --> 00:12:18,299
+So the 3NF decomposition process as we have seen consists of these 5 steps.
+
+122
+00:12:18,299 --> 00:12:25,619
+And the key really is in step 3 where we create a table for each function dependency in a
+
+123
+00:12:25,619 --> 00:12:28,380
+minimal basis.
+
+124
+00:12:28,380 --> 00:12:36,500
+So if you recall this was an example on table R where the key is A and then the two function
+
+125
+00:12:36,500 --> 00:12:42,780
+dependencies A determines B is fine but then B determines C is not fine.
+
+126
+00:12:42,780 --> 00:12:49,539
+It's violating 3NF because the left hand side B does not contain a key and the right hand
+
+127
+00:12:49,539 --> 00:12:55,859
+side C is not contained in a key.
+
+128
+00:12:55,859 --> 00:13:03,479
+But in using the 3NF decomposition process, these two function dependencies will go into
+
+129
+00:13:03,479 --> 00:13:12,419
+two different tables R1 containing AB and R2 containing BC.
+
+130
+00:13:12,419 --> 00:13:23,020
+And BC in R2 is fine because the function dependency B determines C in R2 will have
+
+131
+00:13:23,020 --> 00:13:27,219
+B as a key in R2.
+
+132
+00:13:27,219 --> 00:13:33,020
+So therefore BC now becomes OK in R2.
+
+133
+00:13:33,020 --> 00:13:41,320
+So by creating a table for each function dependency, we manage to eliminate some of the violations
+
+134
+00:13:41,320 --> 00:13:46,159
+and with smaller tables, all the violations are now fine.
+
+135
+00:13:46,159 --> 00:13:55,080
+So therefore the 3NF decomposition process produce tables which are in 3NF.
+
+136
+00:13:55,080 --> 00:14:01,000
+The next thing we notice that the minimal basis is not always unique.
+
+137
+00:14:01,000 --> 00:14:10,320
+For example, if we have a table R containing ABC and then there are many function dependencies
+
+138
+00:14:10,320 --> 00:14:17,239
+depending on the order in which we perform the three steps to derive the minimal basis,
+
+139
+00:14:17,239 --> 00:14:21,679
+we may get different sets of minimal basis.
+
+140
+00:14:21,679 --> 00:14:28,400
+So minimal basis is not unique.
+
+141
+00:14:28,400 --> 00:14:34,320
+Now let's compare the Boyce-Codd normal form and the 3rd normal form.
+
+142
+00:14:34,320 --> 00:14:40,479
+In the Boyce-Codd normal form, we say that for any non-trivial FD in a table, its left-hand
+
+143
+00:14:40,479 --> 00:14:43,179
+side is a super-key.
+
+144
+00:14:43,179 --> 00:14:47,919
+Of course, the left-hand side may also be a key.
+
+145
+00:14:47,919 --> 00:14:53,599
+But if all the function dependencies are such that the left-hand side is a super-key, it
+
+146
+00:14:53,599 --> 00:15:03,039
+means that whatever attributes that depend on them, whatever attributes, meaning whichever
+
+147
+00:15:03,280 --> 00:15:08,960
+right-hand side are the attributes in the functional dependencies, whether the right-hand
+
+148
+00:15:08,960 --> 00:15:17,719
+side attributes are key attributes or non-key attributes, all attributes are dependent on
+
+149
+00:15:17,719 --> 00:15:23,559
+an entire key or a super-key.
+
+150
+00:15:23,559 --> 00:15:31,679
+In a case of 3NF, well, the condition where its left-hand side is a super-key is essentially
+
+151
+00:15:31,679 --> 00:15:34,000
+the Boyce-Codd normal form.
+
+152
+00:15:34,000 --> 00:15:42,599
+In case the table is not in the Boyce-Codd normal form, the 3rd NF still requires that
+
+153
+00:15:42,599 --> 00:15:49,039
+the right-hand side attribute appear in a key.
+
+154
+00:15:49,039 --> 00:15:52,400
+The right-hand side attribute appear in a key.
+
+155
+00:15:52,400 --> 00:16:00,359
+What this means is that the right-hand side attribute depends on a key.
+
+156
+00:16:00,359 --> 00:16:05,840
+Quite clearly, the Boyce-Codd normal form is stricter than the 3rd normal form.
+
+157
+00:16:05,840 --> 00:16:13,280
+Therefore, a table that satisfies the Boyce-Codd normal form must satisfy 3rd NF, but not the
+
+158
+00:16:13,280 --> 00:16:16,280
+other way around.
+
+159
+00:16:16,280 --> 00:16:29,599
+And a table that violates 3rd NF must definitely violate BCNF, and not the other way around.
+
+160
+00:16:30,599 --> 00:16:41,159
+Let us compare the tables formed from Boyce-Codd normal form and 3rd NF decomposition processes.
+
+161
+00:16:41,159 --> 00:16:47,080
+Tables which are formed from Boyce-Codd normal form decomposition will have no anomalies,
+
+162
+00:16:47,080 --> 00:16:50,880
+so all the anomalies will be gone.
+
+163
+00:16:50,880 --> 00:16:56,919
+Most redundancies are eliminated except for multi-attribute keys.
+
+164
+00:16:57,239 --> 00:17:05,839
+However, the tables may not preserve functional dependencies as we have seen earlier.
+
+165
+00:17:05,839 --> 00:17:15,359
+For 3rd NF, tables also have no anomalies, however, there may be a little bit more redundancy
+
+166
+00:17:15,359 --> 00:17:17,839
+than Boyce-Codd normal form.
+
+167
+00:17:17,839 --> 00:17:20,040
+Why is this the case?
+
+168
+00:17:20,160 --> 00:17:29,119
+In Boyce-Codd normal form, when an FD is not violating, a new table is not formed.
+
+169
+00:17:29,119 --> 00:17:37,520
+But in 3rd NF, whether an FD is violating or not violating, each one of them will become
+
+170
+00:17:37,520 --> 00:17:39,199
+a new table.
+
+171
+00:17:39,199 --> 00:17:45,420
+So therefore, you may have attributes repeated in more than one table, which is why we say
+
+172
+00:17:45,420 --> 00:17:51,699
+that there is a little bit more redundancy than tables produced using Boyce-Codd normal
+
+173
+00:17:51,699 --> 00:17:52,699
+form.
+
+174
+00:17:52,699 --> 00:18:00,380
+However, the good thing is, all the tables in 3rd NF decomposition process preserve all
+
+175
+00:18:00,380 --> 00:18:05,380
+the FDs, as we will see in the next slide.
+
+176
+00:18:05,380 --> 00:18:13,060
+So between the Boyce-Codd normal form and the 3rd NF, which one do we use?
+
+177
+00:18:13,060 --> 00:18:20,459
+Our logical approach is to go for the strictest criteria first, which is the Boyce-Codd normal
+
+178
+00:18:20,459 --> 00:18:23,180
+form.
+
+179
+00:18:23,180 --> 00:18:30,339
+If all the FDs are preserved in the tables produced from the BCNF decomposition, then
+
+180
+00:18:30,339 --> 00:18:31,339
+that's good.
+
+181
+00:18:31,339 --> 00:18:32,339
+We are done.
+
+182
+00:18:32,339 --> 00:18:44,020
+Otherwise, we will relax a little bit and go for 3rd NF decomposition instead.
+
+183
+00:18:44,020 --> 00:18:51,260
+Let us now see why tables produced using the 3rd NF decomposition process preserve all
+
+184
+00:18:51,260 --> 00:18:57,260
+the functional dependencies in the original table.
+
+185
+00:18:57,260 --> 00:19:00,180
+Well this is the 5 steps that we have gone through.
+
+186
+00:19:00,180 --> 00:19:07,640
+In the first step, minimal basis, we notice that the minimal basis preserves all the functional
+
+187
+00:19:07,640 --> 00:19:14,060
+dependencies as much as possible, except the redundant ones.
+
+188
+00:19:14,060 --> 00:19:20,020
+And in step 3, for each of the functional dependencies that is preserved, we create
+
+189
+00:19:20,020 --> 00:19:21,739
+a table.
+
+190
+00:19:21,739 --> 00:19:29,060
+So therefore, this guarantees that no original functional dependencies are lost, except those
+
+191
+00:19:29,060 --> 00:19:38,579
+which are redundant.
+
+192
+00:19:38,579 --> 00:19:45,060
+So we have finished our discussion on the 3rd NF, and that's for topic 4.
+
+193
+00:19:45,060 --> 00:19:50,020
+The next lecture, we will discuss topic 5, relational algebra.
+
+194
+00:19:50,020 --> 00:19:50,699
+Have a nice day!
+
+
