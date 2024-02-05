@@ -1,4 +1,5 @@
 import subprocess
+from openai import OpenAI
 
 def compress_video(input_file, output_file, compression_level=23):
     """
@@ -29,22 +30,27 @@ def compress_video(input_file, output_file, compression_level=23):
     except subprocess.CalledProcessError as e:
         print(f"Error during compression: {e}")
 
+def save_transcript_to_srt(transcript, output_srt_path):
+    with open(output_srt_path, 'w') as srt_file:
+        srt_file.write(transcript)
+
 if __name__ == "__main__":
-    # Get input file path from user
-    input_video_path = input("Enter the input video file path: ").strip()
-
-    # Verify if the input file exists
-    try:
-        with open(input_video_path):
-            pass
-    except FileNotFoundError:
-        print("Error: Input file not found.")
-        exit()
-
-    # Get output file path from user with a valid extension (e.g., .mp4)
-    output_video_path = input("Enter the output video file path with a valid extension (e.g., .mp4): ").strip()
-
-    # You can adjust the compression level as needed (0 for lossless, higher for more compression)
+    # Compress video
+    input_video_path = "./test.mp4"
+    compressed_video_path = "./test_com.mp4"
     compression_level = 40
+    compress_video(input_video_path, compressed_video_path, compression_level)
 
-    compress_video(input_video_path, output_video_path, compression_level)
+    # Transcribe with Whisper
+    client = OpenAI()
+    
+    with open(compressed_video_path, "rb") as compressed_video_file:
+        transcript = client.audio.transcriptions.create(
+            model="whisper-1", 
+            file=compressed_video_file,  # Pass the compressed video file
+            response_format="srt"
+        )
+
+    output_srt_path = "./output_transcript.srt"
+    save_transcript_to_srt(transcript, output_srt_path)
+    print(f"Transcription saved to {output_srt_path}")
